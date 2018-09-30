@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Juego">
+      <UniqueIdentifier>{3e2d0010-5ac7-41a0-a55c-9124a8089b5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pantallas">
+      <UniqueIdentifier>{3819d341-e7c9-44f9-9a33-2b20fe5697af}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\Juego\app.cpp">
+      <Filter>Juego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Juego\main.cpp">
+      <Filter>Juego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Pantallas\credits.cpp">
+      <Filter>Pantallas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Pantallas\game.cpp">
+      <Filter>Pantallas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Pantallas\game_over.cpp">
+      <Filter>Pantallas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Pantallas\menu.cpp">
+      <Filter>Pantallas</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\Juego\app.h">
+      <Filter>Juego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Pantallas\credits.h">
+      <Filter>Pantallas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Pantallas\game.h">
+      <Filter>Pantallas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Pantallas\game_over.h">
+      <Filter>Pantallas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Pantallas\menu.h">
+      <Filter>Pantallas</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
