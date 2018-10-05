@@ -61,10 +61,31 @@ namespace app
 		int destroyedMeteorsCount;
 		float meteorSpeed;
 
+		Image shipImage;
+		Image asteroidImage;
+		Texture2D shipTexture;
+		Texture2D asteroidTexture;
+		Vector2 texturePosition;
+		Rectangle sourceRect;
+		Rectangle destRec;
+
 		bool init;
 
 		void InitValues()
 		{
+			shipImage = LoadImage("res/nave2.png");
+			asteroidImage= LoadImage("res/asteroide.png");
+			shipTexture = LoadTextureFromImage(shipImage);
+			asteroidTexture = LoadTextureFromImage(asteroidImage);
+			sourceRect.height = shipTexture.height;
+			sourceRect.width = shipTexture.width;
+			sourceRect.x = 0;
+			sourceRect.y = 0;
+
+			destRec.width = shipTexture.width*0.08f;
+			destRec.height = shipTexture.height*0.08f;
+			
+
 			float posx, posy;
 			float velx, vely;
 			bool correctRange = false;
@@ -154,6 +175,9 @@ namespace app
 
 			midMeteorsCount = 0;
 			smallMeteorsCount = 0;
+
+			texturePosition.x = ship.position.x - 300;
+			texturePosition.y = ship.position.y - 300;
 		}
 
 		static void Input()
@@ -213,6 +237,9 @@ namespace app
 				// Player logic: movement
 				ship.position.x += (ship.speed.x*ship.acceleration*GetFrameTime()*100);
 				ship.position.y -= (ship.speed.y*ship.acceleration*GetFrameTime()*100);
+				destRec.x = ship.position.x;
+				destRec.y = ship.position.y;
+
 
 				// Collision logic: player vs walls
 				if (ship.position.x > GetScreenWidth() + shipHeight) ship.position.x = -(shipHeight);
@@ -428,21 +455,35 @@ namespace app
 			Vector2 v2 = { ship.position.x - cosf(ship.rotation*DEG2RAD)*(shipBaseSize / 2), ship.position.y - sinf(ship.rotation*DEG2RAD)*(shipBaseSize / 2) };
 			Vector2 v3 = { ship.position.x + cosf(ship.rotation*DEG2RAD)*(shipBaseSize / 2), ship.position.y + sinf(ship.rotation*DEG2RAD)*(shipBaseSize / 2) };
 			DrawTriangle(v1, v2, v3, DARKGREEN);
+			//DrawTextureEx(shipTexture, { ship.position.x-35,ship.position.y -38}, ship.rotation, 0.1f, WHITE);
+			DrawTexturePro(shipTexture, sourceRect, destRec, { (shipTexture.width/2)*0.08f,(shipTexture.height/2)*0.08f}, ship.rotation, WHITE);
 			for (int i = 0; i < maxBigMeteors; i++)
 			{
-				if (bigMeteor[i].active) DrawCircleV(bigMeteor[i].position, bigMeteor[i].radius, DARKGRAY);
+				if (bigMeteor[i].active)
+				{
+					DrawCircleV(bigMeteor[i].position, bigMeteor[i].radius, DARKGRAY);
+					DrawTextureEx(asteroidTexture, { bigMeteor[i].position.x - 63,bigMeteor[i].position.y - 59 }, 0, 0.25f, WHITE);
+				}
 				else DrawCircleV(bigMeteor[i].position, bigMeteor[i].radius, BLANK);
 			}
 
 			for (int i = 0; i < maxMediumMeteors; i++)
 			{
-				if (mediumMeteor[i].active) DrawCircleV(mediumMeteor[i].position, mediumMeteor[i].radius, GRAY);
+				if (mediumMeteor[i].active)
+				{
+					DrawCircleV(mediumMeteor[i].position, mediumMeteor[i].radius, GRAY);
+					DrawTextureEx(asteroidTexture, { mediumMeteor[i].position.x - 38,mediumMeteor[i].position.y - 35 }, 0, 0.15f, WHITE);
+				}
 				else DrawCircleV(mediumMeteor[i].position, mediumMeteor[i].radius, BLANK);
 			}
 
 			for (int i = 0; i < maxSmallMeteors; i++)
 			{
-				if (smallMeteor[i].active) DrawCircleV(smallMeteor[i].position, smallMeteor[i].radius, GRAY);
+				if (smallMeteor[i].active)
+				{
+					DrawCircleV(smallMeteor[i].position, smallMeteor[i].radius, GRAY);
+					DrawTextureEx(asteroidTexture, { smallMeteor[i].position.x - 20,smallMeteor[i].position.y - 19 }, 0, 0.08f, WHITE);
+				}
 				else DrawCircleV(smallMeteor[i].position, smallMeteor[i].radius, BLANK);
 			}
 			for (int i = 0; i < shipMaxShoots; i++)
