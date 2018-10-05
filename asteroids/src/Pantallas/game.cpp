@@ -44,9 +44,9 @@ namespace app
 
 		extern bool victory=false;
 		bool gameOver;
-		const int maxBigMeteors = 2;
-		const int maxMediumMeteors = 4;
-		const int maxSmallMeteors = 8;
+		const int maxBigMeteors = 4;
+		const int maxMediumMeteors = 8;
+		const int maxSmallMeteors = 16;
 		const int shipMaxShoots = 10;
 		Spaceship ship;
 		float shipBaseSize = 20.0f;
@@ -75,6 +75,8 @@ namespace app
 		//Numeros magicos para escalar las texturas
 
 		float shipScale;
+		float shootScale;
+		Vector2 shootScalePos;
 		float bigMeteorScale;
 		Vector2 bigMeteorScalePos;
 		float mediumMeteorScale;
@@ -97,8 +99,7 @@ namespace app
 			sourceRect.x = 0;
 			sourceRect.y = 0;
 
-			destRec.width = shipTexture.width*0.08f;
-			destRec.height = shipTexture.height*0.08f;
+			
 			
 
 			float posx, posy;
@@ -192,12 +193,17 @@ namespace app
 			smallMeteorsCount = 0;
 
 			shipScale = (GetScreenWidth()* 0.08f) / 1600;
+			shootScale= (GetScreenWidth()* 1.0f) / 1600;
 			bigMeteorScale = (GetScreenWidth()* 0.25f) / 1600;
 			mediumMeteorScale = (GetScreenWidth()* 0.15f) / 1600;
 			smallMeteorScale = (GetScreenWidth()* 0.08f) / 1600;
 			bigMeteorScalePos = { (bigMeteorScale*asteroidImage.width) / 2 ,(bigMeteorScale*asteroidImage.height) / 2 };
 			mediumMeteorScalePos = { (mediumMeteorScale*asteroidImage.width) / 2 ,(mediumMeteorScale*asteroidImage.height) / 2 };
 			smallMeteorScalePos = { (smallMeteorScale*asteroidImage.width) / 2 ,(smallMeteorScale*asteroidImage.height) / 2 };
+			shootScalePos = { (shootScale*shootImage.width) / 2 ,(shootScale*shootImage.height) / 2 };
+
+			destRec.width = shipTexture.width*shipScale;
+			destRec.height = shipTexture.height*shipScale;
 
 		}
 
