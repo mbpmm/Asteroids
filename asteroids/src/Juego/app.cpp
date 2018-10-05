@@ -23,7 +23,7 @@ namespace app
 	static void InitGame()
 	{
 		SetExitKey(0);
-		InitWindow(screenWidth, screenHeight, "PONG");
+		InitWindow(screenWidth, screenHeight, "ASTEROIDS");
 		HideCursor();
 		InitAudioDevice();
 		InitValues();

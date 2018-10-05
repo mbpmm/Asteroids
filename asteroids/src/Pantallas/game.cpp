@@ -61,22 +61,37 @@ namespace app
 		int destroyedMeteorsCount;
 		float meteorSpeed;
 
+		//Imagenes y texturas
+
 		Image shipImage;
 		Image asteroidImage;
+		Image shootImage;
+		Texture2D shootTexture;
 		Texture2D shipTexture;
 		Texture2D asteroidTexture;
-		Vector2 texturePosition;
 		Rectangle sourceRect;
 		Rectangle destRec;
+
+		//Numeros magicos para escalar las texturas
+
+		float shipScale;
+		float bigMeteorScale;
+		Vector2 bigMeteorScalePos;
+		float mediumMeteorScale;
+		Vector2 mediumMeteorScalePos;
+		float smallMeteorScale;
+		Vector2 smallMeteorScalePos;
 
 		bool init;
 
 		void InitValues()
 		{
+			shootImage = LoadImage("res/shoot.png");
 			shipImage = LoadImage("res/nave2.png");
 			asteroidImage= LoadImage("res/asteroide.png");
 			shipTexture = LoadTextureFromImage(shipImage);
 			asteroidTexture = LoadTextureFromImage(asteroidImage);
+			shootTexture = LoadTextureFromImage(shootImage);
 			sourceRect.height = shipTexture.height;
 			sourceRect.width = shipTexture.width;
 			sourceRect.x = 0;
@@ -176,8 +191,14 @@ namespace app
 			midMeteorsCount = 0;
 			smallMeteorsCount = 0;
 
-			texturePosition.x = ship.position.x - 300;
-			texturePosition.y = ship.position.y - 300;
+			shipScale = (GetScreenWidth()* 0.08f) / 1600;
+			bigMeteorScale = (GetScreenWidth()* 0.25f) / 1600;
+			mediumMeteorScale = (GetScreenWidth()* 0.15f) / 1600;
+			smallMeteorScale = (GetScreenWidth()* 0.08f) / 1600;
+			bigMeteorScalePos = { (bigMeteorScale*asteroidImage.width) / 2 ,(bigMeteorScale*asteroidImage.height) / 2 };
+			mediumMeteorScalePos = { (mediumMeteorScale*asteroidImage.width) / 2 ,(mediumMeteorScale*asteroidImage.height) / 2 };
+			smallMeteorScalePos = { (smallMeteorScale*asteroidImage.width) / 2 ,(smallMeteorScale*asteroidImage.height) / 2 };
+
 		}
 
 		static void Input()
@@ -454,15 +475,14 @@ namespace app
 			Vector2 v1 = { ship.position.x + sinf(ship.rotation*DEG2RAD)*(shipHeight), ship.position.y - cosf(ship.rotation*DEG2RAD)*(shipHeight) };
 			Vector2 v2 = { ship.position.x - cosf(ship.rotation*DEG2RAD)*(shipBaseSize / 2), ship.position.y - sinf(ship.rotation*DEG2RAD)*(shipBaseSize / 2) };
 			Vector2 v3 = { ship.position.x + cosf(ship.rotation*DEG2RAD)*(shipBaseSize / 2), ship.position.y + sinf(ship.rotation*DEG2RAD)*(shipBaseSize / 2) };
-			DrawTriangle(v1, v2, v3, DARKGREEN);
-			//DrawTextureEx(shipTexture, { ship.position.x-35,ship.position.y -38}, ship.rotation, 0.1f, WHITE);
-			DrawTexturePro(shipTexture, sourceRect, destRec, { (shipTexture.width/2)*0.08f,(shipTexture.height/2)*0.08f}, ship.rotation, WHITE);
+			//DrawTriangle(v1, v2, v3, DARKGREEN);
+			DrawTexturePro(shipTexture, sourceRect, destRec, { (shipTexture.width/2)*shipScale,(shipTexture.height/2)*shipScale }, ship.rotation, WHITE);
 			for (int i = 0; i < maxBigMeteors; i++)
 			{
 				if (bigMeteor[i].active)
 				{
 					DrawCircleV(bigMeteor[i].position, bigMeteor[i].radius, DARKGRAY);
-					DrawTextureEx(asteroidTexture, { bigMeteor[i].position.x - 63,bigMeteor[i].position.y - 59 }, 0, 0.25f, WHITE);
+					DrawTextureEx(asteroidTexture, { bigMeteor[i].position.x - bigMeteorScalePos.x,bigMeteor[i].position.y - bigMeteorScalePos.y }, 0, bigMeteorScale, WHITE);
 				}
 				else DrawCircleV(bigMeteor[i].position, bigMeteor[i].radius, BLANK);
 			}
@@ -472,7 +492,7 @@ namespace app
 				if (mediumMeteor[i].active)
 				{
 					DrawCircleV(mediumMeteor[i].position, mediumMeteor[i].radius, GRAY);
-					DrawTextureEx(asteroidTexture, { mediumMeteor[i].position.x - 38,mediumMeteor[i].position.y - 35 }, 0, 0.15f, WHITE);
+					DrawTextureEx(asteroidTexture, { mediumMeteor[i].position.x - mediumMeteorScalePos.x,mediumMeteor[i].position.y - mediumMeteorScalePos.y }, 0, mediumMeteorScale, WHITE);
 				}
 				else DrawCircleV(mediumMeteor[i].position, mediumMeteor[i].radius, BLANK);
 			}
@@ -482,13 +502,17 @@ namespace app
 				if (smallMeteor[i].active)
 				{
 					DrawCircleV(smallMeteor[i].position, smallMeteor[i].radius, GRAY);
-					DrawTextureEx(asteroidTexture, { smallMeteor[i].position.x - 20,smallMeteor[i].position.y - 19 }, 0, 0.08f, WHITE);
+					DrawTextureEx(asteroidTexture, { smallMeteor[i].position.x - smallMeteorScalePos.x,smallMeteor[i].position.y - smallMeteorScalePos.y }, 0, smallMeteorScale, WHITE);
 				}
 				else DrawCircleV(smallMeteor[i].position, smallMeteor[i].radius, BLANK);
 			}
 			for (int i = 0; i < shipMaxShoots; i++)
 			{
-				if (shoot[i].active) DrawCircleV(shoot[i].position, shoot[i].radius, WHITE);
+				if (shoot[i].active)
+				{
+					DrawCircleV(shoot[i].position, shoot[i].radius, WHITE);
+					DrawTextureEx(shootTexture, { shoot[i].position.x-16 ,shoot[i].position.y-16  }, 0, 1.0f, WHITE);
+				}
 			}
 		}
 
