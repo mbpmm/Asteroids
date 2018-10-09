@@ -13,9 +13,9 @@ namespace app
 	namespace credits
 	{
 		char text1[] = "Usando libreria raylib";
-		char text2[] = "Musica realizada con Bosca Ceoil";
+		char text2[] = "Musica y sonidos realizados con Bosca Ceoil";
 		char text3[] = "Creado por Mariano Martinez";
-		char text4[] = "Aprete SPACE para volver al menu";
+		char text4[] = "MENU";
 		char text5[] = "ASTEROIDS V 0.3";
 		int sizeText = 0;
 		int sizeText2 = 0;
@@ -30,6 +30,10 @@ namespace app
 		int text5PositionX = 0;
 		int text5PositionY = 0;
 
+		Vector2 mousePoint;
+		Rectangle rect1;
+		Color colorRect1;
+
 		void InitCredits()
 		{
 			sizeText = (GetScreenWidth() * 30) / 800;
@@ -41,30 +45,48 @@ namespace app
 			text3PositionX = GetScreenWidth() / 2 - MeasureText(text3, sizeText) / 2;
 			text3PositionY = GetScreenHeight() * 0.571428;
 			text4PositionX = GetScreenWidth() / 2 - MeasureText(text4, sizeText2) / 2;
-			text4PositionY = GetScreenHeight() * 0.714285;
+			text4PositionY = GetScreenHeight() * 0.75;
 			text5PositionX = GetScreenWidth() / 2 - MeasureText(text5, sizeText) / 2;
 			text5PositionY = GetScreenHeight() * 0.142857;
+
+			colorRect1 = DARKPURPLE;
+
+			rect1.x = GetScreenWidth() / 2 - MeasureText(text4, sizeText2);
+			rect1.y = GetScreenHeight() / 2 + GetScreenHeight() * 0.225;
+			rect1.height = (GetScreenWidth() * 80) / 1600;
+			rect1.width = (GetScreenWidth() * 170) / 1600;
 		}
 
 		void UpdateCredits()
 		{
-			if (IsKeyPressed(KEY_SPACE))
+			mousePoint = GetMousePosition();
+			if (CheckCollisionPointRec(mousePoint, rect1))
+			{
+				colorRect1.a = 120;
+
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+				{
+					currentScreen = Menu;
+					ResetValues();
+				}
+			}
+			else colorRect1.a = 255;
+			/*if (IsKeyPressed(KEY_SPACE))
 			{
 				currentScreen = Menu;
 				ResetValues();
-			}
+			}*/
 		}
 
 		void DrawCredits()
 		{
 			ClearBackground(BLACK);
+			DrawRectangleRec(rect1, colorRect1);
 			DrawText(text1, textPositionX, textPositionY, sizeText, GRAY);
 			DrawText(text2, text2PositionX, text2PositionY, sizeText, GRAY);
 			DrawText(text3, text3PositionX, text3PositionY, sizeText, GRAY);
 			DrawText(text4, text4PositionX, text4PositionY, sizeText2, GRAY);
 			DrawText(text5, text5PositionX, text5PositionY, sizeText, GRAY);
 		}
-
-
 	}
 }
