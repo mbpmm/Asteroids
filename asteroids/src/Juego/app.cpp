@@ -24,7 +24,7 @@ namespace app
 	{
 		SetExitKey(0);
 		InitWindow(screenWidth, screenHeight, "ASTEROIDS");
-		HideCursor();
+		//HideCursor();
 		InitAudioDevice();
 		InitValues();
 		InitMenu();

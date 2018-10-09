@@ -60,6 +60,11 @@ namespace app
 		int	smallMeteorsCount;
 		int destroyedMeteorsCount;
 		float meteorSpeed;
+		Vector2 v1;
+		Vector2 v2;
+		float prodVect;
+		float modv1;
+		float modv2;
 
 		//Imagenes y texturas
 
@@ -99,9 +104,6 @@ namespace app
 			sourceRect.x = 0;
 			sourceRect.y = 0;
 
-			
-			
-
 			float posx, posy;
 			float velx, vely;
 			bool correctRange = false;
@@ -114,7 +116,7 @@ namespace app
 			ship.speed = { 0, 0 };
 			ship.acceleration = 0;
 			ship.rotation = 0;
-			ship.collider = { ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), ship.position.y - cos(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), 12 };
+			ship.collider = { ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), ship.position.y - cos(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), 24 };
 			ship.color = LIGHTGRAY;
 
 			for (int i = 0; i < shipMaxShoots; i++)
@@ -207,12 +209,34 @@ namespace app
 
 		}
 
+		static void RotationAngle()
+		{
+			v1.x = 0;
+			v1.y = 0.0f - ship.position.y;
+
+			v2.x = GetMouseX() - ship.position.x;
+			v2.y = GetMouseY() - ship.position.y;
+
+			prodVect = v1.x*v2.x + v1.y*v2.y;
+			modv1 = sqrt(pow(v1.x, 2) + pow(v1.y, 2));
+			modv2 = sqrt(pow(v2.x, 2) + pow(v2.y, 2));
+
+			ship.rotation = acos(prodVect / (modv1*modv2));
+			ship.rotation *= RAD2DEG;
+
+			if (GetMouseX() < ship.position.x)
+			{
+				ship.rotation = 360 - ship.rotation;
+			}
+		}
+
 		static void Input()
 		{
-			if (IsKeyDown(KEY_LEFT)) ship.rotation -= 350 * GetFrameTime();
-			if (IsKeyDown(KEY_RIGHT)) ship.rotation += 350 * GetFrameTime();
+			RotationAngle();
+			//if (IsKeyDown(KEY_LEFT)) ship.rotation -= 350 * GetFrameTime();
+			//if (IsKeyDown(KEY_RIGHT)) ship.rotation += 350 * GetFrameTime();
 
-			if (IsKeyPressed(KEY_SPACE))
+			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 			{
 				init = true;
 				for (int i = 0; i < shipMaxShoots; i++)
@@ -230,7 +254,7 @@ namespace app
 			}
 
 			// Player logic: acceleration
-			if (IsKeyDown(KEY_UP))
+			if (IsKeyDown(KEY_W))
 			{
 				if (ship.acceleration < 1) ship.acceleration += 200.0f*GetFrameTime();
 			}
@@ -239,7 +263,7 @@ namespace app
 				if (ship.acceleration > 0) ship.acceleration -= 200.0f*GetFrameTime();
 				else if (ship.acceleration < 0) ship.acceleration = 0;
 			}
-			if (IsKeyDown(KEY_DOWN))
+			if (IsKeyDown(KEY_S))
 			{
 				if (ship.acceleration > 0) ship.acceleration -= 200.0f*GetFrameTime();
 				else if (ship.acceleration < 0) ship.acceleration = 0;
@@ -251,6 +275,8 @@ namespace app
 				ResetValues();
 			}
 		}
+
+		
 
 		static void Update()
 		{
@@ -303,7 +329,7 @@ namespace app
 					}
 				}
 
-				ship.collider = { ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), ship.position.y - cos(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), 12 };
+				ship.collider = { ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), ship.position.y - cos(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), 24 };
 
 				for (int a = 0; a < maxBigMeteors; a++)
 				{
@@ -517,7 +543,7 @@ namespace app
 				if (shoot[i].active)
 				{
 					DrawCircleV(shoot[i].position, shoot[i].radius, WHITE);
-					DrawTextureEx(shootTexture, { shoot[i].position.x-16 ,shoot[i].position.y-16  }, 0, 1.0f, WHITE);
+					DrawTextureEx(shootTexture, { shoot[i].position.x-shootScalePos.x ,shoot[i].position.y-shootScalePos.y  }, 0, shootScale, WHITE);
 				}
 			}
 		}
