@@ -15,8 +15,8 @@ using namespace credits;
 
 namespace app
 {
-	int screenWidth = 1600;
-	int screenHeight = 900;
+	int screenWidth = 800;
+	int screenHeight = 600;
 	bool exit = false;
 	Screens currentScreen = Menu;
 

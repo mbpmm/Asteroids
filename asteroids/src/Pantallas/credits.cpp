@@ -16,7 +16,7 @@ namespace app
 		char text2[] = "Musica realizada con Bosca Ceoil";
 		char text3[] = "Creado por Mariano Martinez";
 		char text4[] = "Aprete SPACE para volver al menu";
-		char text5[] = "ASTEROIDS V 0.1";
+		char text5[] = "ASTEROIDS V 0.3";
 		int sizeText = 0;
 		int sizeText2 = 0;
 		int textPositionX = 0;

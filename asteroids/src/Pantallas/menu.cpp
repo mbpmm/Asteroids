@@ -15,7 +15,7 @@ namespace app
 		char text2[] = "JUGAR";
 		char text3[] = "CREDITOS";
 		char text4[] = "SALIR";
-		char text5[] = "V 0.1";
+		char text5[] = "V 0.3";
 		int sizeText1 = 0;
 		int sizeText2 = 0;
 		int sizeText3 = 0;
