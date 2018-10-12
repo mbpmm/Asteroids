@@ -4,9 +4,11 @@
 Juego basado en el clasico Asteroids, popular videojuego de arcade basado en vectores lanzado en 1979 por Atari.
 
 ## Screenshot:
-- https://drive.google.com/file/d/11nN75x68UFMZfPidr1CNMMA1TdCsQ6SF/view?usp=sharing
-- https://drive.google.com/file/d/1wSfo8-D6FxhKlGXAY8DSLVPmN2mrEp81/view?usp=sharing
-- https://drive.google.com/file/d/1GkQ2kKmt1avw4hNT8ZlUJ_Pw_5mpcoBS/view?usp=sharing
+
+![1](screenshots/ss1.png)
+![2](screenshots/ss2.png)
+![3](screenshots/ss3.png)
+
 
 ## Musica: 
 - Realizada con BoscaCeoil.
