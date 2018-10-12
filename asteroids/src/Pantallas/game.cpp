@@ -89,10 +89,16 @@ namespace app
 		float smallMeteorScale;
 		Vector2 smallMeteorScalePos;
 
+		//Sonidos 
+		Sound shootSound;
+		Sound explosionSound;
+
 		bool init;
 
 		void InitValues()
 		{
+			shootSound = LoadSound("res/shoot.wav");
+			explosionSound = LoadSound("res/explosion.wav");
 			shootImage = LoadImage("res/shoot.png");
 			shipImage = LoadImage("res/nave2.png");
 			asteroidImage= LoadImage("res/asteroide.png");
@@ -238,6 +244,7 @@ namespace app
 
 			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 			{
+				PlaySound(shootSound);
 				init = true;
 				for (int i = 0; i < shipMaxShoots; i++)
 				{
@@ -253,7 +260,7 @@ namespace app
 				}
 			}
 
-			// Player logic: acceleration
+			// Player acceleration
 			if (IsKeyDown(KEY_W))
 			{
 				if (ship.acceleration < 1) ship.acceleration += 200.0f*GetFrameTime();
@@ -421,6 +428,7 @@ namespace app
 						{
 							if (bigMeteor[a].active && CheckCollisionCircles(shoot[i].position, shoot[i].radius, bigMeteor[a].position, bigMeteor[a].radius))
 							{
+								PlaySound(explosionSound);
 								shoot[i].active = false;
 								bigMeteor[a].active = false;
 								destroyedMeteorsCount++;
@@ -449,6 +457,7 @@ namespace app
 						{
 							if (mediumMeteor[b].active && CheckCollisionCircles(shoot[i].position, shoot[i].radius, mediumMeteor[b].position, mediumMeteor[b].radius))
 							{
+								PlaySound(explosionSound);
 								shoot[i].active = false;
 								mediumMeteor[b].active = false;
 								destroyedMeteorsCount++;
@@ -477,6 +486,7 @@ namespace app
 						{
 							if (smallMeteor[c].active && CheckCollisionCircles(shoot[i].position, shoot[i].radius, smallMeteor[c].position, smallMeteor[c].radius))
 							{
+								PlaySound(explosionSound);
 								shoot[i].active = false;
 								smallMeteor[c].active = false;
 								destroyedMeteorsCount++;

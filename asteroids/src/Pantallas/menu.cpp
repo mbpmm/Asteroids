@@ -10,12 +10,11 @@ namespace app
 {
 	namespace menu
 	{
-		bool pause = false;
 		char text1[] = "ASTEROIDS";
 		char text2[] = "JUGAR";
 		char text3[] = "CREDITOS";
 		char text4[] = "SALIR";
-		char text5[] = "V 0.3";
+		char text5[] = "V 0.6";
 		int sizeText1 = 0;
 		int sizeText2 = 0;
 		int sizeText3 = 0;
@@ -36,12 +35,9 @@ namespace app
 		Color colorRect1;
 		Color colorRect2;
 		Color colorRect3;
-		/*Music menuSong;*/
-
+		
 		void InitMenu()
 		{
-			/*menuSong = LoadMusicStream("res/sounds/menusong.ogg");
-			PlayMusicStream(menuSong);*/
 			sizeText1 = (GetScreenWidth() * 110) / 800;
 			sizeText2 = (GetScreenWidth() * 20) / 800;
 			sizeText3 = (GetScreenWidth() * 15) / 800;
@@ -79,7 +75,7 @@ namespace app
 		void UpdateMenu()
 		{
 			mousePoint = GetMousePosition();
-			/*UpdateMusicStream(menuSong);*/
+			
 			if (CheckCollisionPointRec(mousePoint, rect1))
 			{
 				colorRect1.a = 120;
@@ -105,14 +101,6 @@ namespace app
 			{
 				exit = true;
 			}*/
-
-			if (IsKeyPressed(KEY_P))
-			{
-				/*pause = !pause;
-
-				if (pause) StopMusicStream(menuSong);
-				else PlayMusicStream(menuSong);*/
-			}
 
 			if (CheckCollisionPointRec(mousePoint, rect2))
 			{

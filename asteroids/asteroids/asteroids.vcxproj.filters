@@ -27,6 +27,9 @@
     <ClCompile Include="..\src\Pantallas\menu.cpp">
       <Filter>Pantallas</Filter>
     </ClCompile>
+    <ClCompile Include="pause.cpp">
+      <Filter>Pantallas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Juego\app.h">
@@ -42,6 +45,9 @@
       <Filter>Pantallas</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Pantallas\menu.h">
+      <Filter>Pantallas</Filter>
+    </ClInclude>
+    <ClInclude Include="pause.h">
       <Filter>Pantallas</Filter>
     </ClInclude>
   </ItemGroup>

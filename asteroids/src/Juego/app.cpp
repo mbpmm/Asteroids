@@ -19,6 +19,8 @@ namespace app
 	int screenHeight = 900;
 	bool exit = false;
 	Screens currentScreen = Menu;
+	Music menuSong;
+	bool pause = false;
 
 	static void InitGame()
 	{
@@ -30,11 +32,21 @@ namespace app
 		InitMenu();
 		InitCredits();
 		InitGameover();
+		menuSong = LoadMusicStream("res/menusong2.ogg");
+		PlayMusicStream(menuSong);
 
 	}
 
 	static void UpdateGame()
 	{
+		UpdateMusicStream(menuSong);
+		if (IsKeyPressed(KEY_P))
+		{
+				pause = !pause;
+
+				if (pause) StopMusicStream(menuSong);
+				else PlayMusicStream(menuSong);
+		}
 		switch (currentScreen)
 		{
 		case Menu:
