@@ -75,6 +75,8 @@ namespace app
 		Image shipImage;
 		Image asteroidImage;
 		Image shootImage;
+		Image backImage;
+		Texture2D backTexture;
 		Texture2D shootTexture;
 		Texture2D shipTexture;
 		Texture2D asteroidTexture;
@@ -117,22 +119,24 @@ namespace app
 			shootImage = LoadImage("res/shoot.png");
 			shipImage = LoadImage("res/nave2.png");
 			asteroidImage= LoadImage("res/asteroide.png");
+			backImage = LoadImage("res/fondo.png");
 
 			//init boton pausa
 			botonPausa1.x = GetScreenWidth()*0.96f;
 			botonPausa1.y = GetScreenHeight()*0.02f;
-			botonPausa1.height = 40;
-			botonPausa1.width = 15;
+			botonPausa1.height = (GetScreenWidth() * 40)/1600;
+			botonPausa1.width = (GetScreenWidth() * 15) / 1600;
 			botonPausa2.x = GetScreenWidth()*0.975f;
 			botonPausa2.y = GetScreenHeight()*0.02f;
-			botonPausa2.height = 40;
-			botonPausa2.width = 15;
+			botonPausa2.height = (GetScreenWidth() * 40) / 1600;
+			botonPausa2.width = (GetScreenWidth() * 15) / 1600;
 			colorRect = GRAY;
 
 
 			shipTexture = LoadTextureFromImage(shipImage);
 			asteroidTexture = LoadTextureFromImage(asteroidImage);
 			shootTexture = LoadTextureFromImage(shootImage);
+			backTexture = LoadTextureFromImage(backImage);
 			sourceRect.height = shipTexture.height;
 			sourceRect.width = shipTexture.width;
 			sourceRect.x = 0;
@@ -305,24 +309,24 @@ namespace app
 			// Player acceleration
 			if (IsKeyDown(KEY_W))
 			{
-				if (ship.acceleration < 1) ship.acceleration += 200.0f*GetFrameTime();
+				if (ship.acceleration < 1) ship.acceleration += (200.0f*GetFrameTime()*GetScreenWidth())/1600;
 			}
 			else
 			{
-				if (ship.acceleration > 0) ship.acceleration -= 200.0f*GetFrameTime();
+				if (ship.acceleration > 0) ship.acceleration -= (200.0f*GetFrameTime()*GetScreenWidth()) / 1600;
 				else if (ship.acceleration < 0) ship.acceleration = 0;
 			}
 			if (IsKeyDown(KEY_S))
 			{
-				if (ship.acceleration > 0) ship.acceleration -= 200.0f*GetFrameTime();
+				if (ship.acceleration > 0) ship.acceleration -= (200.0f*GetFrameTime()*GetScreenWidth()) / 1600;
 				else if (ship.acceleration < 0) ship.acceleration = 0;
 			}
 
-			if (IsKeyPressed(KEY_ESCAPE))
+			/*if (IsKeyPressed(KEY_ESCAPE))
 			{
 				currentScreen = Menu;
 				ResetValues();
-			}
+			}*/
 		}
 
 		
@@ -333,8 +337,8 @@ namespace app
 			if (!gameOver)
 			{
 				// Player logic: speed
-				ship.speed.x = sin(ship.rotation*DEG2RAD)*shipSpeed*GetFrameTime() * 150;
-				ship.speed.y = cos(ship.rotation*DEG2RAD)*shipSpeed*GetFrameTime() * 150;
+				ship.speed.x = (sin(ship.rotation*DEG2RAD)*shipSpeed*GetFrameTime() * 150*GetScreenWidth())/1600;
+				ship.speed.y = (cos(ship.rotation*DEG2RAD)*shipSpeed*GetFrameTime() * 150 * GetScreenWidth()) / 1600;
 
 				// Player logic: movement
 				ship.position.x += (ship.speed.x*ship.acceleration*GetFrameTime()*100);
@@ -555,7 +559,8 @@ namespace app
 
 		void Draw()
 		{
-			ClearBackground(BLACK);
+			ClearBackground(BLANK);
+			DrawTexture(backTexture,0,0,WHITE);
 			Vector2 v1 = { ship.position.x + sinf(ship.rotation*DEG2RAD)*(shipHeight), ship.position.y - cosf(ship.rotation*DEG2RAD)*(shipHeight) };
 			Vector2 v2 = { ship.position.x - cosf(ship.rotation*DEG2RAD)*(shipBaseSize / 2), ship.position.y - sinf(ship.rotation*DEG2RAD)*(shipBaseSize / 2) };
 			Vector2 v3 = { ship.position.x + cosf(ship.rotation*DEG2RAD)*(shipBaseSize / 2), ship.position.y + sinf(ship.rotation*DEG2RAD)*(shipBaseSize / 2) };
