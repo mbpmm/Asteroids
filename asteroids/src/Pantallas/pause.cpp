@@ -44,7 +44,7 @@ namespace app
 			sizeText2 = (GetScreenWidth() * 20) / 800;
 			sizeText3 = (GetScreenWidth() * 15) / 800;
 			textPositionX = GetScreenWidth() / 2 - MeasureText(text1, sizeText1) / 2;
-			textPositionY = GetScreenHeight() * 0.2333333;
+			textPositionY = GetScreenHeight() * 0.1333333;
 			text2PositionX = GetScreenWidth() / 2 - MeasureText(text2, sizeText2) / 2;
 			text2PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.1333333;
 			text3PositionX = GetScreenWidth() / 2 - MeasureText(text3, sizeText2) / 2;

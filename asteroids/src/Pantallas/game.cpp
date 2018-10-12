@@ -16,8 +16,7 @@ namespace app
 		struct Spaceship
 		{
 			Vector2 position;
-			Vector2 speed;
-			float acceleration;
+			Vector2 acceleration;
 			float rotation;
 			Vector3 collider;
 			Color color;
@@ -65,7 +64,8 @@ namespace app
 		float prodVect;
 		float modv1;
 		float modv2;
-		char text[] = "W:Acelerar, CLICK IZQ: Disparar, P:Pausar musica.";
+		Vector2 normAcel;
+		char text[] = "CLICK DER: Acelerar, CLICK IZQ: Disparar, P: Pausar musica.";
 		int sizeText;
 		float textPositionX;
 		float textPositionY;
@@ -151,8 +151,7 @@ namespace app
 
 			ship.position.x = GetScreenWidth() / 2;
 			ship.position.y = GetScreenHeight() / 2 - shipHeight / 2;
-			ship.speed = { 0, 0 };
-			ship.acceleration = 0;
+			ship.acceleration = { 0, 0 };
 			ship.rotation = 0;
 			ship.collider = { ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), ship.position.y - cos(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), 24 };
 			ship.color = LIGHTGRAY;
@@ -307,20 +306,22 @@ namespace app
 			}
 
 			// Player acceleration
-			if (IsKeyDown(KEY_W))
+			if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
 			{
-				if (ship.acceleration < 1) ship.acceleration += (200.0f*GetFrameTime()*GetScreenWidth())/1600;
+				normAcel.x = v2.x / modv2;
+				normAcel.y = v2.y / modv2;
+				ship.acceleration.x += normAcel.x*((10.0f*GetFrameTime()*GetScreenWidth()) / 1600);
+				ship.acceleration.y += normAcel.y*((10.0f*GetFrameTime()*GetScreenWidth()) / 1600);
+				
+				/*if (ship.acceleration > 0) ship.acceleration -= (200.0f*GetFrameTime()*GetScreenWidth()) / 1600;
+				else if (ship.acceleration < 0) ship.acceleration = 0;*/
+
 			}
-			else
-			{
-				if (ship.acceleration > 0) ship.acceleration -= (200.0f*GetFrameTime()*GetScreenWidth()) / 1600;
-				else if (ship.acceleration < 0) ship.acceleration = 0;
-			}
-			if (IsKeyDown(KEY_S))
-			{
-				if (ship.acceleration > 0) ship.acceleration -= (200.0f*GetFrameTime()*GetScreenWidth()) / 1600;
-				else if (ship.acceleration < 0) ship.acceleration = 0;
-			}
+			
+			
+			
+			
+			
 
 			/*if (IsKeyPressed(KEY_ESCAPE))
 			{
@@ -337,12 +338,12 @@ namespace app
 			if (!gameOver)
 			{
 				// Player logic: speed
-				ship.speed.x = (sin(ship.rotation*DEG2RAD)*shipSpeed*GetFrameTime() * 150*GetScreenWidth())/1600;
-				ship.speed.y = (cos(ship.rotation*DEG2RAD)*shipSpeed*GetFrameTime() * 150 * GetScreenWidth()) / 1600;
+				//ship.speed.x = (sin(ship.rotation*DEG2RAD)*shipSpeed*GetFrameTime() * 150*GetScreenWidth())/1600;
+				//ship.speed.y = (cos(ship.rotation*DEG2RAD)*shipSpeed*GetFrameTime() * 150 * GetScreenWidth()) / 1600;
 
 				// Player logic: movement
-				ship.position.x += (ship.speed.x*ship.acceleration*GetFrameTime()*100);
-				ship.position.y -= (ship.speed.y*ship.acceleration*GetFrameTime()*100);
+				ship.position.x += (ship.acceleration.x*GetFrameTime()*100);
+				ship.position.y += (ship.acceleration.y*GetFrameTime()*100);
 				destRec.x = ship.position.x;
 				destRec.y = ship.position.y;
 

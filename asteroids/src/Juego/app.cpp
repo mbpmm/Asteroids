@@ -17,8 +17,8 @@ using namespace pause;
 
 namespace app
 {
-	int screenWidth = 1600;
-	int screenHeight = 900;
+	int screenWidth = 1280;
+	int screenHeight = 768;
 	bool exit = false;
 	Screens currentScreen = Menu;
 	Music menuSong;
@@ -108,7 +108,7 @@ namespace app
 	{
 		InitGame();
 		// Main game loop
-		while (!exit)
+		while (!WindowShouldClose()&&!exit)
 		{
 			UpdateGame();
 			DrawGame();
