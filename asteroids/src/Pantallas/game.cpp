@@ -93,6 +93,13 @@ namespace app
 		Sound shootSound;
 		Sound explosionSound;
 
+		//Boton pausa
+
+		Rectangle botonPausa1;
+		Rectangle botonPausa2;
+		Color colorRect;
+		Vector2 mousePoint;
+
 		bool init;
 
 		void InitValues()
@@ -102,6 +109,19 @@ namespace app
 			shootImage = LoadImage("res/shoot.png");
 			shipImage = LoadImage("res/nave2.png");
 			asteroidImage= LoadImage("res/asteroide.png");
+
+			//init boton pausa
+			botonPausa1.x = GetScreenWidth()*0.96f;
+			botonPausa1.y = GetScreenHeight()*0.02f;
+			botonPausa1.height = 40;
+			botonPausa1.width = 15;
+			botonPausa2.x = GetScreenWidth()*0.975f;
+			botonPausa2.y = GetScreenHeight()*0.02f;
+			botonPausa2.height = 40;
+			botonPausa2.width = 15;
+			colorRect = GRAY;
+
+
 			shipTexture = LoadTextureFromImage(shipImage);
 			asteroidTexture = LoadTextureFromImage(asteroidImage);
 			shootTexture = LoadTextureFromImage(shootImage);
@@ -239,8 +259,22 @@ namespace app
 		static void Input()
 		{
 			RotationAngle();
+			mousePoint = GetMousePosition();
 			//if (IsKeyDown(KEY_LEFT)) ship.rotation -= 350 * GetFrameTime();
 			//if (IsKeyDown(KEY_RIGHT)) ship.rotation += 350 * GetFrameTime();
+
+			if (CheckCollisionPointRec(mousePoint, botonPausa1))
+			{
+				colorRect.a = 120;
+
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) currentScreen = Pause;
+			}
+			else colorRect.a = 255;
+
+			if (CheckCollisionPointRec(mousePoint, botonPausa2))
+			{
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) currentScreen = Pause;
+			}
 
 			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 			{
@@ -519,6 +553,10 @@ namespace app
 			Vector2 v3 = { ship.position.x + cosf(ship.rotation*DEG2RAD)*(shipBaseSize / 2), ship.position.y + sinf(ship.rotation*DEG2RAD)*(shipBaseSize / 2) };
 			//DrawTriangle(v1, v2, v3, DARKGREEN);
 			DrawTexturePro(shipTexture, sourceRect, destRec, { (shipTexture.width/2)*shipScale,(shipTexture.height/2)*shipScale }, ship.rotation, WHITE);
+			
+			DrawRectangleRec(botonPausa1, colorRect);
+			DrawRectangleRec(botonPausa2, colorRect);
+			
 			for (int i = 0; i < maxBigMeteors; i++)
 			{
 				if (bigMeteor[i].active)

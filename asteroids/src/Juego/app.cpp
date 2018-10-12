@@ -61,6 +61,9 @@ namespace app
 		case GameOver:
 			UpdateGameOver();
 			break;
+		case Pause:
+			UpdateFrame();
+			break;
 		default:
 			break;
 		}
@@ -82,6 +85,9 @@ namespace app
 			break;
 		case GameOver:
 			DrawGameOver();
+		case Pause:
+			UpdateFrame();
+			break;
 		default:
 			break;
 		}
