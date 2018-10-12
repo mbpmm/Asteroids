@@ -6,12 +6,14 @@
 #include "menu.h"
 #include "game_over.h"
 #include "credits.h"
+#include "pause.h"
 
 using namespace app;
 using namespace game;
 using namespace menu;
 using namespace gameover;
 using namespace credits;
+using namespace pause;
 
 namespace app
 {
@@ -20,7 +22,7 @@ namespace app
 	bool exit = false;
 	Screens currentScreen = Menu;
 	Music menuSong;
-	bool pause = false;
+	bool pauseMusic = false;
 
 	static void InitGame()
 	{
@@ -32,6 +34,7 @@ namespace app
 		InitMenu();
 		InitCredits();
 		InitGameover();
+		InitPause();
 		menuSong = LoadMusicStream("res/menusong2.ogg");
 		PlayMusicStream(menuSong);
 
@@ -42,9 +45,9 @@ namespace app
 		UpdateMusicStream(menuSong);
 		if (IsKeyPressed(KEY_P))
 		{
-				pause = !pause;
+				pauseMusic = !pauseMusic;
 
-				if (pause) StopMusicStream(menuSong);
+				if (pauseMusic) StopMusicStream(menuSong);
 				else PlayMusicStream(menuSong);
 		}
 		switch (currentScreen)
@@ -62,7 +65,7 @@ namespace app
 			UpdateGameOver();
 			break;
 		case Pause:
-			UpdateFrame();
+			UpdatePause();
 			break;
 		default:
 			break;
@@ -85,8 +88,9 @@ namespace app
 			break;
 		case GameOver:
 			DrawGameOver();
+			break;
 		case Pause:
-			UpdateFrame();
+			DrawPause();
 			break;
 		default:
 			break;

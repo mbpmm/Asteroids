@@ -65,6 +65,10 @@ namespace app
 		float prodVect;
 		float modv1;
 		float modv2;
+		char text[] = "W:Acelerar, CLICK IZQ: Disparar, P:Pausar musica.";
+		int sizeText;
+		float textPositionX;
+		float textPositionY;
 
 		//Imagenes y texturas
 
@@ -104,6 +108,10 @@ namespace app
 
 		void InitValues()
 		{
+			sizeText = (GetScreenWidth() * 20) / 1600;
+			textPositionX = GetScreenWidth()*0.01f;
+			textPositionY = GetScreenHeight() * 0.97f;
+
 			shootSound = LoadSound("res/shoot.wav");
 			explosionSound = LoadSound("res/explosion.wav");
 			shootImage = LoadImage("res/shoot.png");
@@ -554,9 +562,6 @@ namespace app
 			//DrawTriangle(v1, v2, v3, DARKGREEN);
 			DrawTexturePro(shipTexture, sourceRect, destRec, { (shipTexture.width/2)*shipScale,(shipTexture.height/2)*shipScale }, ship.rotation, WHITE);
 			
-			DrawRectangleRec(botonPausa1, colorRect);
-			DrawRectangleRec(botonPausa2, colorRect);
-			
 			for (int i = 0; i < maxBigMeteors; i++)
 			{
 				if (bigMeteor[i].active)
@@ -594,6 +599,10 @@ namespace app
 					DrawTextureEx(shootTexture, { shoot[i].position.x-shootScalePos.x ,shoot[i].position.y-shootScalePos.y  }, 0, shootScale, WHITE);
 				}
 			}
+
+			DrawRectangleRec(botonPausa1, colorRect);
+			DrawRectangleRec(botonPausa2, colorRect);
+			DrawText(text, textPositionX, textPositionY, sizeText, PURPLE);
 		}
 
 		void ResetValues()
