@@ -10,31 +10,31 @@ namespace app
 {
 	namespace menu
 	{
-		char text1[] = "ASTEROIDS";
-		char text2[] = "JUGAR";
-		char text3[] = "CREDITOS";
-		char text4[] = "SALIR";
-		char text5[] = "V 0.9";
-		int sizeText1 = 0;
-		int sizeText2 = 0;
-		int sizeText3 = 0;
-		int textPositionX = 0;
-		int textPositionY = 0;
-		int text2PositionX = 0;
-		int text2PositionY = 0;
-		int text3PositionX = 0;
-		int text3PositionY = 0;
-		int text4PositionX = 0;
-		int text4PositionY = 0;
-		int text5PositionX = 0;
-		int text5PositionY = 0;
-		Vector2 mousePoint;
-		Rectangle rect1;
-		Rectangle rect2;
-		Rectangle rect3;
-		Color colorRect1;
-		Color colorRect2;
-		Color colorRect3;
+		static char text1[] = "ASTEROIDS";
+		static char text2[] = "JUGAR";
+		static char text3[] = "CREDITOS";
+		static char text4[] = "SALIR";
+		static char text5[] = "V 0.9";
+		static int sizeText1 = 0;
+		static int sizeText2 = 0;
+		static int sizeText3 = 0;
+		static int textPositionX = 0;
+		static int textPositionY = 0;
+		static int text2PositionX = 0;
+		static int text2PositionY = 0;
+		static int text3PositionX = 0;
+		static int text3PositionY = 0;
+		static int text4PositionX = 0;
+		static int text4PositionY = 0;
+		static int text5PositionX = 0;
+		static int text5PositionY = 0;
+		static Vector2 mousePoint;
+		static Rectangle rect1;
+		static Rectangle rect2;
+		static Rectangle rect3;
+		static Color colorRect1;
+		static Color colorRect2;
+		static Color colorRect3;
 		
 		void InitMenu()
 		{
@@ -84,11 +84,6 @@ namespace app
 			}
 			else colorRect1.a = 255;
 
-			/*if (IsKeyPressed(KEY_ENTER))
-			{
-				currentScreen = Gameplay;
-			}*/
-
 			if (CheckCollisionPointRec(mousePoint, rect3))
 			{
 				colorRect3.a = 120;
@@ -97,11 +92,6 @@ namespace app
 			}
 			else colorRect3.a = 255;
 
-			/*if (IsKeyPressed(KEY_ESCAPE))
-			{
-				exit = true;
-			}*/
-
 			if (CheckCollisionPointRec(mousePoint, rect2))
 			{
 				colorRect2.a = 120;
@@ -109,11 +99,6 @@ namespace app
 				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) currentScreen = Credits;
 			}
 			else colorRect2.a = 255;
-
-			/*if (IsKeyPressed(KEY_C))
-			{
-				currentScreen = Credits;
-			}*/
 		}
 
 		void DrawMenu()

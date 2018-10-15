@@ -17,12 +17,12 @@ using namespace pause;
 
 namespace app
 {
-	int screenWidth = 1280;
-	int screenHeight = 768;
+	static int screenWidth = 1280;
+	static int screenHeight = 768;
 	bool exit = false;
 	Screens currentScreen = Menu;
-	Music menuSong;
-	bool pauseMusic = false;
+	static Music menuSong;
+	static bool pauseMusic = false;
 
 	static void InitGame()
 	{

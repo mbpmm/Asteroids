@@ -9,9 +9,9 @@ namespace app
 		void UpdateFrame();
 		void Draw();
 		void ResetValues();
-		void RotationAngle();
 
 		extern bool victory;
+		extern bool gameOver;
 	}
 }
 #endif // !GAME_H

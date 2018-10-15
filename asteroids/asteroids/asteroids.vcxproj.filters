@@ -7,12 +7,12 @@
     <Filter Include="Pantallas">
       <UniqueIdentifier>{3819d341-e7c9-44f9-9a33-2b20fe5697af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Objetos">
+      <UniqueIdentifier>{3925022e-4663-46d5-b992-a8c53ea62021}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Juego\app.cpp">
-      <Filter>Juego</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Juego\main.cpp">
       <Filter>Juego</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Pantallas\credits.cpp">
@@ -29,6 +29,15 @@
     </ClCompile>
     <ClCompile Include="..\src\Pantallas\pause.cpp">
       <Filter>Pantallas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main.cpp">
+      <Filter>Juego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Objetos\meteors.cpp">
+      <Filter>Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Objetos\spaceship.cpp">
+      <Filter>Objetos</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +58,12 @@
     </ClInclude>
     <ClInclude Include="..\src\Pantallas\pause.h">
       <Filter>Pantallas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Objetos\meteors.h">
+      <Filter>Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Objetos\spaceship.h">
+      <Filter>Objetos</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

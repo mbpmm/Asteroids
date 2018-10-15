@@ -12,30 +12,30 @@ namespace app
 {
 	namespace credits
 	{
-		char text1[] = "Usando libreria raylib";
-		char text2[] = "Musica realizada con Bosca Ceoil";
-		char text3[] = "Creado por Mariano Martinez";
-		char text4[] = "MENU";
-		char text5[] = "ASTEROIDS V 0.9";
-		char text6[] = "Sonidos realizados con Bfxr";
-		int sizeText = 0;
-		int sizeText2 = 0;
-		int textPositionX = 0;
-		int textPositionY = 0;
-		int text2PositionX = 0;
-		int text2PositionY = 0;
-		int text3PositionX = 0;
-		int text3PositionY = 0;
-		int text4PositionX = 0;
-		int text4PositionY = 0;
-		int text5PositionX = 0;
-		int text5PositionY = 0;
-		int text6PositionX = 0;
-		int text6PositionY = 0;
+		static char text1[] = "Usando libreria raylib";
+		static char text2[] = "Musica realizada con Bosca Ceoil";
+		static char text3[] = "Creado por Mariano Martinez";
+		static char text4[] = "MENU";
+		static char text5[] = "ASTEROIDS V 0.9";
+		static char text6[] = "Sonidos realizados con Bfxr";
+		static int sizeText = 0;
+		static int sizeText2 = 0;
+		static int textPositionX = 0;
+		static int textPositionY = 0;
+		static int text2PositionX = 0;
+		static int text2PositionY = 0;
+		static int text3PositionX = 0;
+		static int text3PositionY = 0;
+		static int text4PositionX = 0;
+		static int text4PositionY = 0;
+		static int text5PositionX = 0;
+		static int text5PositionY = 0;
+		static int text6PositionX = 0;
+		static int text6PositionY = 0;
 
-		Vector2 mousePoint;
-		Rectangle rect1;
-		Color colorRect1;
+		static Vector2 mousePoint;
+		static Rectangle rect1;
+		static Color colorRect1;
 
 		void InitCredits()
 		{
@@ -76,11 +76,6 @@ namespace app
 				}
 			}
 			else colorRect1.a = 255;
-			/*if (IsKeyPressed(KEY_SPACE))
-			{
-				currentScreen = Menu;
-				ResetValues();
-			}*/
 		}
 
 		void DrawCredits()

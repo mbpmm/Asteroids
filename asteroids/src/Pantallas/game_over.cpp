@@ -12,26 +12,26 @@ namespace app
 {
 	namespace gameover
 	{
-		char text1[] = "Perdiste  :(";
-		char text2[] = "Ganaste!!!";
-		char text3[] = "JUGAR DE NUEVO";
-		char text4[] = "MENU";
-		int text1PositionX = 0;
-		int text1PositionY = 0;
-		int text2PositionX = 0;
-		int text3PositionX = 0;
-		int text3PositionY = 0;
-		int text4PositionX = 0;
-		int text4PositionY = 0;
-		int winnerNumber = 0;
-		int sizeText1 = 0;
-		int sizeText2 = 0;
+		static char text1[] = "Perdiste  :(";
+		static char text2[] = "Ganaste!!!";
+		static char text3[] = "JUGAR DE NUEVO";
+		static char text4[] = "MENU";
+		static int text1PositionX = 0;
+		static int text1PositionY = 0;
+		static int text2PositionX = 0;
+		static int text3PositionX = 0;
+		static int text3PositionY = 0;
+		static int text4PositionX = 0;
+		static int text4PositionY = 0;
+		static int winnerNumber = 0;
+		static int sizeText1 = 0;
+		static int sizeText2 = 0;
 
-		Vector2 mousePoint;
-		Rectangle rect1;
-		Rectangle rect2;
-		Color colorRect1;
-		Color colorRect2;
+		static Vector2 mousePoint;
+		static Rectangle rect1;
+		static Rectangle rect2;
+		static Color colorRect1;
+		static Color colorRect2;
 
 		void InitGameover()
 		{
@@ -85,16 +85,6 @@ namespace app
 				}
 			}
 			else colorRect2.a = 255;
-
-			/*if (IsKeyPressed(KEY_SPACE))
-			{
-				currentScreen = Menu;
-				ResetValues();
-			}
-			if (IsKeyPressed(KEY_ESCAPE))
-			{
-				exit = true;
-			}*/
 		}
 
 		void DrawGameOver()
@@ -113,7 +103,5 @@ namespace app
 			DrawText(text3, text3PositionX, text3PositionY, sizeText2, GRAY);
 			DrawText(text4, text4PositionX, text4PositionY, sizeText2, GRAY);
 		}
-
-
 	}
 }

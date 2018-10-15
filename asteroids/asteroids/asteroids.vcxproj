@@ -20,7 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Juego\app.cpp" />
-    <ClCompile Include="..\src\Juego\main.cpp" />
+    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\Objetos\meteors.cpp" />
+    <ClCompile Include="..\src\Objetos\spaceship.cpp" />
     <ClCompile Include="..\src\Pantallas\credits.cpp" />
     <ClCompile Include="..\src\Pantallas\game.cpp" />
     <ClCompile Include="..\src\Pantallas\game_over.cpp" />
@@ -29,6 +31,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Juego\app.h" />
+    <ClInclude Include="..\src\Objetos\meteors.h" />
+    <ClInclude Include="..\src\Objetos\spaceship.h" />
     <ClInclude Include="..\src\Pantallas\credits.h" />
     <ClInclude Include="..\src\Pantallas\game.h" />
     <ClInclude Include="..\src\Pantallas\game_over.h" />
@@ -106,7 +110,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\raylib-2.0.0-Win32-msvc15\include;$(SolutionDir)src\Pantallas;$(SolutionDir)src\Juego</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)libs\raylib-2.0.0-Win32-msvc15\include;$(SolutionDir)src\Pantallas;$(SolutionDir)src\Juego;$(SolutionDir)src\Objetos</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)libs\raylib-2.0.0-Win32-msvc15\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -134,7 +138,7 @@ xcopy "$(SolutionDir)res" "$(TargetDir)res"/E /y /s</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\raylib-2.0.0-Win32-msvc15\include;$(SolutionDir)src\Pantallas;$(SolutionDir)src\Juego</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)libs\raylib-2.0.0-Win32-msvc15\include;$(SolutionDir)src\Pantallas;$(SolutionDir)src\Juego;$(SolutionDir)src\Objetos</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
