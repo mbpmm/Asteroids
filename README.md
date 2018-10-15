@@ -1,5 +1,8 @@
 # Asteroids
 
+## Logo:
+![](screenshots/logo.png)
+
 ## Descripcion:
 Juego basado en el clasico Asteroids, popular videojuego de arcade basado en vectores lanzado en 1979 por Atari.
 
