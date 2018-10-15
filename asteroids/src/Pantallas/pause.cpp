@@ -12,10 +12,12 @@ namespace app
 {
 	namespace pause
 	{
+		bool mute = false;
 		static char text1[] = "PAUSA";
 		static char text2[] = "SEGUIR";
 		static char text3[] = "MENU";
 		static char text4[] = "SALIR";
+		static char text5[] = "MUSICA";
 		static int sizeText1 = 0;
 		static int sizeText2 = 0;
 		static int sizeText3 = 0;
@@ -33,9 +35,11 @@ namespace app
 		static Rectangle rect1;
 		static Rectangle rect2;
 		static Rectangle rect3;
+		static Rectangle rect4;
 		static Color colorRect1;
 		static Color colorRect2;
 		static Color colorRect3;
+		static Color colorRect4;
 		static Color backGround;
 
 		void InitPause()
@@ -51,10 +55,13 @@ namespace app
 			text3PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.2333333;
 			text4PositionX = GetScreenWidth() / 2 - MeasureText(text4, sizeText2) / 2;
 			text4PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.3333333;
+			text5PositionX = GetScreenWidth() / 2 - MeasureText(text5, sizeText2) / 2;
+			text5PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.0333333;
 
 			colorRect1 = PURPLE;
 			colorRect2 = PURPLE;
 			colorRect3 = PURPLE;
+			colorRect4 = PURPLE;
 			backGround = BLANK;
 
 			rect1.x = GetScreenWidth() / 2 - MeasureText(text4, sizeText2);
@@ -71,6 +78,11 @@ namespace app
 			rect3.y = GetScreenHeight() / 2 + GetScreenHeight() * 0.31;
 			rect3.height = (GetScreenWidth() * 80) / 1600;
 			rect3.width = (GetScreenWidth() * 255) / 1600;
+
+			rect4.x = GetScreenWidth() / 2 - MeasureText(text4, sizeText2);
+			rect4.y = GetScreenHeight() / 2 + GetScreenHeight() * 0.01;
+			rect4.height = (GetScreenWidth() * 80) / 1600;
+			rect4.width = (GetScreenWidth() * 255) / 1600;
 		}
 
 		void UpdatePause()
@@ -104,6 +116,16 @@ namespace app
 				}
 			}
 			else colorRect2.a = 255;
+			if (CheckCollisionPointRec(mousePoint, rect4))
+			{
+				colorRect4.a = 120;
+
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+				{
+					mute = !mute;
+				}
+			}
+			else colorRect4.a = 255;
 		}
 
 		void DrawPause()
@@ -112,10 +134,12 @@ namespace app
 			DrawRectangleRec(rect1, colorRect1);
 			DrawRectangleRec(rect2, colorRect2);
 			DrawRectangleRec(rect3, colorRect3);
+			DrawRectangleRec(rect4, colorRect4);
 			DrawText(text1, textPositionX, textPositionY, sizeText1, RAYWHITE);
 			DrawText(text2, text2PositionX, text2PositionY, sizeText2, BLACK);
 			DrawText(text3, text3PositionX, text3PositionY, sizeText2, BLACK);
 			DrawText(text4, text4PositionX, text4PositionY, sizeText2, BLACK);
+			DrawText(text5, text5PositionX, text5PositionY, sizeText2, BLACK);
 		}
 	}
 }

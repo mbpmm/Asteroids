@@ -8,6 +8,8 @@ namespace app
 		void InitPause();
 		void UpdatePause();
 		void DrawPause();
+
+		extern bool mute;
 	}
 }
 #endif // !PAUSE_H

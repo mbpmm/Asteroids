@@ -43,12 +43,13 @@ namespace app
 	static void UpdateGame()
 	{
 		UpdateMusicStream(menuSong);
-		if (IsKeyPressed(KEY_P))
+		if (mute)
 		{
 				pauseMusic = !pauseMusic;
 
 				if (pauseMusic) StopMusicStream(menuSong);
 				else PlayMusicStream(menuSong);
+				mute = false;
 		}
 		switch (currentScreen)
 		{
