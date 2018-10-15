@@ -16,7 +16,7 @@ using namespace pause;
 namespace app
 {
 	static int screenWidth = 1280;
-	static int screenHeight = 768;
+	static int screenHeight =768;
 	bool exit = false;
 	Screens currentScreen = Menu;
 	static Music menuSong;
