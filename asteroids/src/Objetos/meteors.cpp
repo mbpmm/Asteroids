@@ -25,7 +25,8 @@ namespace app
 		static int	smallMeteorsCount;
 		static int destroyedMeteorsCount;
 		static float meteorSpeed;
-
+		static const float speedBoost = 100.0f; //variable para que la velocidad se ajuste al GetFrameTime
+		static int initialCorrection = 150;//para que los meteoros no tomen la posicion de la nave en el inicio
 		//Imagenes y texturas
 		static Image meteorImage;
 		static Texture2D meteorTexture;
@@ -42,6 +43,7 @@ namespace app
 		static Sound explosionSound;
 
 		static bool init;
+		static int scaleAux = 1600;
 
 		void InitMeteors()
 		{
@@ -65,7 +67,7 @@ namespace app
 
 				while (!correctRange)
 				{
-					if (posx > GetScreenWidth() / 2 && posx < GetScreenWidth() / 2) posx = GetRandomValue(0, GetScreenWidth());
+					if (posx > GetScreenWidth() / 2 - initialCorrection && posx < GetScreenWidth() / 2 + initialCorrection) posx = GetRandomValue(0, GetScreenWidth());
 					else correctRange = true;
 				}
 
@@ -75,7 +77,7 @@ namespace app
 
 				while (!correctRange)
 				{
-					if (posy > GetScreenHeight() / 2 && posy < GetScreenHeight() / 2)  posy = GetRandomValue(0, GetScreenHeight());
+					if (posy > GetScreenHeight() / 2 - initialCorrection && posy < GetScreenHeight() / 2 + initialCorrection)  posy = GetRandomValue(0, GetScreenHeight());
 					else correctRange = true;
 				}
 
@@ -96,7 +98,7 @@ namespace app
 				}
 
 				bigMeteor[i].speed = { velx, vely };
-				bigMeteor[i].radius = (50 * GetScreenWidth()) / 1600;
+				bigMeteor[i].radius = (50 * GetScreenWidth()) / scaleAux;
 				bigMeteor[i].active = true;
 				bigMeteor[i].color = BLUE;
 			}
@@ -105,7 +107,7 @@ namespace app
 			{
 				mediumMeteor[i].position = { -100, -100 };
 				mediumMeteor[i].speed = { 0, 0 };
-				mediumMeteor[i].radius = (30 * GetScreenWidth()) / 1600;
+				mediumMeteor[i].radius = (30 * GetScreenWidth()) / scaleAux;
 				mediumMeteor[i].active = false;
 				mediumMeteor[i].color = BLUE;
 			}
@@ -114,7 +116,7 @@ namespace app
 			{
 				smallMeteor[i].position = { -100, -100 };
 				smallMeteor[i].speed = { 0, 0 };
-				smallMeteor[i].radius = (15 * GetScreenWidth()) / 1600;
+				smallMeteor[i].radius = (15 * GetScreenWidth()) / scaleAux;
 				smallMeteor[i].active = false;
 				smallMeteor[i].color = BLUE;
 			}
@@ -122,9 +124,9 @@ namespace app
 			midMeteorsCount = 0;
 			smallMeteorsCount = 0;
 
-			bigMeteorScale = (GetScreenWidth()* 0.25f) / 1600;
-			mediumMeteorScale = (GetScreenWidth()* 0.15f) / 1600;
-			smallMeteorScale = (GetScreenWidth()* 0.08f) / 1600;
+			bigMeteorScale = (GetScreenWidth()* 0.25f) / scaleAux;
+			mediumMeteorScale = (GetScreenWidth()* 0.15f) / scaleAux;
+			smallMeteorScale = (GetScreenWidth()* 0.08f) / scaleAux;
 			bigMeteorScalePos = { (bigMeteorScale*meteorImage.width) / 2 ,(bigMeteorScale*meteorImage.height) / 2 };
 			mediumMeteorScalePos = { (mediumMeteorScale*meteorImage.width) / 2 ,(mediumMeteorScale*meteorImage.height) / 2 };
 			smallMeteorScalePos = { (smallMeteorScale*meteorImage.width) / 2 ,(smallMeteorScale*meteorImage.height) / 2 };
@@ -170,8 +172,8 @@ namespace app
 					if (bigMeteor[i].active)
 					{
 						// Movement
-						bigMeteor[i].position.x += bigMeteor[i].speed.x*GetFrameTime() * 100;
-						bigMeteor[i].position.y += bigMeteor[i].speed.y*GetFrameTime() * 100;
+						bigMeteor[i].position.x += bigMeteor[i].speed.x*GetFrameTime() * speedBoost;
+						bigMeteor[i].position.y += bigMeteor[i].speed.y*GetFrameTime() * speedBoost;
 
 						// Collision logic: meteor vs wall
 						if (bigMeteor[i].position.x > GetScreenWidth() + bigMeteor[i].radius) bigMeteor[i].position.x = -(bigMeteor[i].radius);
@@ -187,8 +189,8 @@ namespace app
 					if (mediumMeteor[i].active)
 					{
 						// Movement
-						mediumMeteor[i].position.x += mediumMeteor[i].speed.x*GetFrameTime() * 100;
-						mediumMeteor[i].position.y += mediumMeteor[i].speed.y*GetFrameTime() * 100;
+						mediumMeteor[i].position.x += mediumMeteor[i].speed.x*GetFrameTime() * speedBoost;
+						mediumMeteor[i].position.y += mediumMeteor[i].speed.y*GetFrameTime() * speedBoost;
 
 						// Collision logic: meteor vs wall
 						if (mediumMeteor[i].position.x > GetScreenWidth() + mediumMeteor[i].radius) mediumMeteor[i].position.x = -(mediumMeteor[i].radius);
@@ -204,8 +206,8 @@ namespace app
 					if (smallMeteor[i].active)
 					{
 						// Movement
-						smallMeteor[i].position.x += smallMeteor[i].speed.x*GetFrameTime() * 100;
-						smallMeteor[i].position.y += smallMeteor[i].speed.y*GetFrameTime() * 100;
+						smallMeteor[i].position.x += smallMeteor[i].speed.x*GetFrameTime() * speedBoost;
+						smallMeteor[i].position.y += smallMeteor[i].speed.y*GetFrameTime() * speedBoost;
 
 						// Collision logic: meteor vs wall
 						if (smallMeteor[i].position.x > GetScreenWidth() + smallMeteor[i].radius) smallMeteor[i].position.x = -(smallMeteor[i].radius);

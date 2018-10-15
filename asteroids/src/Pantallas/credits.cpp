@@ -33,14 +33,17 @@ namespace app
 		static int text6PositionX = 0;
 		static int text6PositionY = 0;
 
+		static const int scaleAux1 = 800;
+		static const int scaleAux2 = 1600;
+
 		static Vector2 mousePoint;
 		static Rectangle rect1;
 		static Color colorRect1;
 
 		void InitCredits()
 		{
-			sizeText = (GetScreenWidth() * 30) / 800;
-			sizeText2 = (GetScreenWidth() * 15) / 800;
+			sizeText = (GetScreenWidth() * 30) / scaleAux1;
+			sizeText2 = (GetScreenWidth() * 15) / scaleAux1;
 			textPositionX = GetScreenWidth() / 2 - MeasureText(text1, sizeText) / 2;
 			textPositionY = GetScreenHeight() * 0.2452;
 			text2PositionX = GetScreenWidth() / 2 - MeasureText(text2, sizeText) / 2;
@@ -54,12 +57,12 @@ namespace app
 			text5PositionX = GetScreenWidth() / 2 - MeasureText(text5, sizeText) / 2;
 			text5PositionY = GetScreenHeight() * 0.102857;
 
-			colorRect1 = DARKPURPLE;
+			colorRect1 = PURPLE;
 
-			rect1.x = GetScreenWidth() / 2 - MeasureText(text4, sizeText2);
+			rect1.height = (GetScreenWidth() * 80) / scaleAux2;
+			rect1.width = (GetScreenWidth() * 170) / scaleAux2;
+			rect1.x = GetScreenWidth() / 2 - rect1.width / 2;
 			rect1.y = GetScreenHeight() / 2 + GetScreenHeight() * 0.275;
-			rect1.height = (GetScreenWidth() * 80) / 1600;
-			rect1.width = (GetScreenWidth() * 170) / 1600;
 		}
 
 		void UpdateCredits()
@@ -85,7 +88,7 @@ namespace app
 			DrawText(text1, textPositionX, textPositionY, sizeText, GRAY);
 			DrawText(text2, text2PositionX, text2PositionY, sizeText, GRAY);
 			DrawText(text3, text3PositionX, text3PositionY, sizeText, GRAY);
-			DrawText(text4, text4PositionX, text4PositionY, sizeText2, GRAY);
+			DrawText(text4, text4PositionX, text4PositionY, sizeText2, BLACK);
 			DrawText(text5, text5PositionX, text5PositionY, sizeText, GRAY);
 			DrawText(text6, text6PositionX, text6PositionY, sizeText, GRAY);
 		}

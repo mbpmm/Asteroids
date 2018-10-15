@@ -16,7 +16,10 @@ namespace app
 		Spaceship ship;
 		static float shipBaseSize = 20.0f;
 		static float shipSpeed = 100.0f;
+		static float shipAcc = 10.0f;
 		static float shipHeight;
+		static const float shipColliderZ = 24.0f;
+		static const float speedBoost = 7.5f; //variable para que la velocidad se ajuste al GetFrameTime
 		Shoot shoot[shipMaxShoots];
 	
 		static Vector2 v1;
@@ -46,6 +49,7 @@ namespace app
 		static Vector2 mousePoint;
 
 		static bool init;
+		static int scaleAux = 1600;
 
 		void InitSpaceship()
 		{
@@ -67,7 +71,7 @@ namespace app
 			ship.position.y = GetScreenHeight() / 2 - shipHeight / 2;
 			ship.acceleration = { 0, 0 };
 			ship.rotation = 0;
-			ship.collider = { ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), ship.position.y - cos(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), 24 };
+			ship.collider = { ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), ship.position.y - cos(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), shipColliderZ };
 			ship.color = LIGHTGRAY;
 
 			for (int i = 0; i < shipMaxShoots; i++)
@@ -79,8 +83,8 @@ namespace app
 				shoot[i].color = WHITE;
 			}
 
-			shipScale = (GetScreenWidth()* 0.08f) / 1600;
-			shootScale = (GetScreenWidth()* 1.0f) / 1600;
+			shipScale = (GetScreenWidth()* 0.08f) / scaleAux;
+			shootScale = (GetScreenWidth()* 1.0f) / scaleAux;
 			shootScalePos = { (shootScale*shootImage.width) / 2 ,(shootScale*shootImage.height) / 2 };
 
 			destRec.width = shipTexture.width*shipScale;
@@ -124,8 +128,8 @@ namespace app
 					{
 						shoot[i].position = { ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight), ship.position.y - cos(ship.rotation*DEG2RAD)*(shipHeight) };
 						shoot[i].active = true;
-						shoot[i].speed.x = 7.5*sin(ship.rotation*DEG2RAD)*shipSpeed;
-						shoot[i].speed.y = 7.5*cos(ship.rotation*DEG2RAD)*shipSpeed;
+						shoot[i].speed.x = speedBoost *sin(ship.rotation*DEG2RAD)*shipSpeed;
+						shoot[i].speed.y = speedBoost *cos(ship.rotation*DEG2RAD)*shipSpeed;
 						shoot[i].rotation = ship.rotation;
 						break;
 					}
@@ -135,8 +139,8 @@ namespace app
 			{
 				normAcel.x = v2.x / modv2;
 				normAcel.y = v2.y / modv2;
-				ship.acceleration.x += normAcel.x*((10.0f*GetFrameTime()*GetScreenWidth()) / 1600);
-				ship.acceleration.y += normAcel.y*((10.0f*GetFrameTime()*GetScreenWidth()) / 1600);
+				ship.acceleration.x += normAcel.x*((shipAcc*GetFrameTime()*GetScreenWidth()) / scaleAux);
+				ship.acceleration.y += normAcel.y*((shipAcc*GetFrameTime()*GetScreenWidth()) / scaleAux);
 			}
 		}
 
@@ -148,8 +152,8 @@ namespace app
 			if (!gameOver)
 			{
 				// Player logic: movement
-				ship.position.x += (ship.acceleration.x*GetFrameTime() * 100);
-				ship.position.y += (ship.acceleration.y*GetFrameTime() * 100);
+				ship.position.x += (ship.acceleration.x*GetFrameTime() * shipSpeed);
+				ship.position.y += (ship.acceleration.y*GetFrameTime() * shipSpeed);
 				destRec.x = ship.position.x;
 				destRec.y = ship.position.y;
 
@@ -188,7 +192,7 @@ namespace app
 					}
 				}
 
-				ship.collider = { ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), ship.position.y - cos(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), 24 };
+				ship.collider = { ship.position.x + sin(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), ship.position.y - cos(ship.rotation*DEG2RAD)*(shipHeight / 2.5f), shipColliderZ };
 
 			}
 		}

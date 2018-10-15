@@ -14,10 +14,11 @@ namespace app
 	{
 		bool mute = false;
 		static char text1[] = "PAUSA";
-		static char text2[] = "SEGUIR";
-		static char text3[] = "MENU";
-		static char text4[] = "SALIR";
-		static char text5[] = "MUSICA";
+		static char text2[] = "MENU";
+		static char text3[] = "MUSICA";
+		static char text4[] = "REINICIAR";
+		static char text5[] = "SEGUIR";
+		static char textAux[] = "SALIR";
 		static int sizeText1 = 0;
 		static int sizeText2 = 0;
 		static int sizeText3 = 0;
@@ -42,11 +43,14 @@ namespace app
 		static Color colorRect4;
 		static Color backGround;
 
+		static const int scaleAux1 = 800;
+		static const int scaleAux2 = 1600;
+
 		void InitPause()
 		{
-			sizeText1 = (GetScreenWidth() * 80) / 800;
-			sizeText2 = (GetScreenWidth() * 20) / 800;
-			sizeText3 = (GetScreenWidth() * 15) / 800;
+			sizeText1 = (GetScreenWidth() * 80) / scaleAux1;
+			sizeText2 = (GetScreenWidth() * 20) / scaleAux1;
+			sizeText3 = (GetScreenWidth() * 15) / scaleAux1;
 			textPositionX = GetScreenWidth() / 2 - MeasureText(text1, sizeText1) / 2;
 			textPositionY = GetScreenHeight() * 0.1333333;
 			text2PositionX = GetScreenWidth() / 2 - MeasureText(text2, sizeText2) / 2;
@@ -64,50 +68,55 @@ namespace app
 			colorRect4 = PURPLE;
 			backGround = BLANK;
 
-			rect1.x = GetScreenWidth() / 2 - MeasureText(text4, sizeText2);
+			
+			rect1.height = (GetScreenWidth() * 80) / scaleAux2;
+			rect1.width = (GetScreenWidth() * 255) / scaleAux2;
+			rect1.x = GetScreenWidth() / 2 - rect1.width/2;
 			rect1.y = GetScreenHeight() / 2 + GetScreenHeight() * 0.11;
-			rect1.height = (GetScreenWidth() * 80) / 1600;
-			rect1.width = (GetScreenWidth() * 255) / 1600;
 
-			rect2.x = GetScreenWidth() / 2 - MeasureText(text4, sizeText2);
+			rect2.height = (GetScreenWidth() * 80) / scaleAux2;
+			rect2.width = (GetScreenWidth() * 255) / scaleAux2;
+			rect2.x = GetScreenWidth() / 2 - rect1.width / 2;
 			rect2.y = GetScreenHeight() / 2 + GetScreenHeight() * 0.21;
-			rect2.height = (GetScreenWidth() * 80) / 1600;
-			rect2.width = (GetScreenWidth() * 255) / 1600;
 
-			rect3.x = GetScreenWidth() / 2 - MeasureText(text4, sizeText2);
+			rect3.height = (GetScreenWidth() * 80) / scaleAux2;
+			rect3.width = (GetScreenWidth() * 255) / scaleAux2;
+			rect3.x = GetScreenWidth() / 2 - rect1.width / 2;
 			rect3.y = GetScreenHeight() / 2 + GetScreenHeight() * 0.31;
-			rect3.height = (GetScreenWidth() * 80) / 1600;
-			rect3.width = (GetScreenWidth() * 255) / 1600;
 
-			rect4.x = GetScreenWidth() / 2 - MeasureText(text4, sizeText2);
+			rect4.height = (GetScreenWidth() * 80) / scaleAux2;
+			rect4.width = (GetScreenWidth() * 255) / scaleAux2;
+			rect4.x = GetScreenWidth() / 2 - rect1.width / 2;
 			rect4.y = GetScreenHeight() / 2 + GetScreenHeight() * 0.01;
-			rect4.height = (GetScreenWidth() * 80) / 1600;
-			rect4.width = (GetScreenWidth() * 255) / 1600;
 		}
 
 		void UpdatePause()
 		{
 			mousePoint = GetMousePosition();
 
-			if (CheckCollisionPointRec(mousePoint, rect1))
+			if (CheckCollisionPointRec(mousePoint, rect4))
 			{
-				colorRect1.a = 120;
+				colorRect4.a = 120;
 
 				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) currentScreen = Gameplay;
 			}
-			else colorRect1.a = 255;
+			else colorRect4.a = 255;
 
 			if (CheckCollisionPointRec(mousePoint, rect3))
 			{
 				colorRect3.a = 120;
 
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) exit = true;
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+				{
+					currentScreen = Gameplay;
+					ResetValues();
+				}
 			}
 			else colorRect3.a = 255;
 
-			if (CheckCollisionPointRec(mousePoint, rect2))
+			if (CheckCollisionPointRec(mousePoint, rect1))
 			{
-				colorRect2.a = 120;
+				colorRect1.a = 120;
 
 				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 				{
@@ -115,17 +124,17 @@ namespace app
 					ResetValues();
 				}
 			}
-			else colorRect2.a = 255;
-			if (CheckCollisionPointRec(mousePoint, rect4))
+			else colorRect1.a = 255;
+			if (CheckCollisionPointRec(mousePoint, rect2))
 			{
-				colorRect4.a = 120;
+				colorRect2.a = 120;
 
 				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 				{
 					mute = !mute;
 				}
 			}
-			else colorRect4.a = 255;
+			else colorRect2.a = 255;
 		}
 
 		void DrawPause()
