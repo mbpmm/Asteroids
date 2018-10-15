@@ -1,7 +1,5 @@
 #include "app.h"
 
-#include <raylib.h>
-
 #include "game.h"
 #include "menu.h"
 #include "game_over.h"

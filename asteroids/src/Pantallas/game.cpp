@@ -4,16 +4,11 @@
 
 #include "meteors.h"
 #include "spaceship.h"
-#include "menu.h"
 #include "app.h"
 
-
 using namespace app;
-using namespace menu;
 using namespace	spaceship;
 using namespace	meteors;
-
-
 
 namespace app
 {

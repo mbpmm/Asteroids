@@ -1,14 +1,11 @@
 #include "spaceship.h"
 
-#include <raylib.h>
 #include <cmath>
 
 #include "game.h"
-#include "menu.h"
 #include "app.h"
 
 using namespace app;
-using namespace menu;
 using namespace game;
 
 namespace app
