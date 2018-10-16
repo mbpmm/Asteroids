@@ -14,9 +14,9 @@ namespace app
 {
 	namespace meteors
 	{
-		static const int maxBigMeteors = 4;
-		static const int maxMediumMeteors = 8;
-		static const int maxSmallMeteors = 16;
+		static const int maxBigMeteors = 8;
+		static const int maxMediumMeteors = 16;
+		static const int maxSmallMeteors = 32;
 
 		static Meteor bigMeteor[maxBigMeteors];
 		static Meteor mediumMeteor[maxMediumMeteors];
@@ -41,6 +41,7 @@ namespace app
 
 		//Sonidos 
 		static Sound explosionSound;
+		bool pauseSoundExplosion=false;
 
 		static bool init;
 		static int scaleAux = 1600;
@@ -226,7 +227,14 @@ namespace app
 						{
 							if (bigMeteor[a].active && CheckCollisionCircles(shoot[i].position, shoot[i].radius, bigMeteor[a].position, bigMeteor[a].radius))
 							{
-								PlaySound(explosionSound);
+								if (!pauseSoundExplosion)
+								{
+									PlaySound(explosionSound);
+								}
+								else
+								{
+									PauseSound(explosionSound);
+								}
 								shoot[i].active = false;
 								bigMeteor[a].active = false;
 								destroyedMeteorsCount++;
@@ -255,7 +263,14 @@ namespace app
 						{
 							if (mediumMeteor[b].active && CheckCollisionCircles(shoot[i].position, shoot[i].radius, mediumMeteor[b].position, mediumMeteor[b].radius))
 							{
-								PlaySound(explosionSound);
+								if (!pauseSoundExplosion)
+								{
+									PlaySound(explosionSound);
+								}
+								else
+								{
+									PauseSound(explosionSound);
+								}
 								shoot[i].active = false;
 								mediumMeteor[b].active = false;
 								destroyedMeteorsCount++;
@@ -284,7 +299,14 @@ namespace app
 						{
 							if (smallMeteor[c].active && CheckCollisionCircles(shoot[i].position, shoot[i].radius, smallMeteor[c].position, smallMeteor[c].radius))
 							{
-								PlaySound(explosionSound);
+								if (!pauseSoundExplosion)
+								{
+									PlaySound(explosionSound);
+								}
+								else
+								{
+									PauseSound(explosionSound);
+								}
 								shoot[i].active = false;
 								smallMeteor[c].active = false;
 								destroyedMeteorsCount++;

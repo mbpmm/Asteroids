@@ -33,6 +33,7 @@ namespace app
 		extern Spaceship ship;
 		extern const int shipMaxShoots;
 		extern Shoot shoot[];
+		extern bool pauseSoundShoot;
 	}
 }
 #endif // !SPACESHIP_H

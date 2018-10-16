@@ -2,11 +2,13 @@
 
 #include <cmath>
 
+#include "pause.h"
 #include "game.h"
 #include "app.h"
 
 using namespace app;
 using namespace game;
+using namespace pause;
 
 namespace app
 {
@@ -45,6 +47,7 @@ namespace app
 
 		//Sonidos 
 		static Sound shootSound;
+		bool pauseSoundShoot = false;
 
 		static Vector2 mousePoint;
 
@@ -113,14 +116,21 @@ namespace app
 			}
 		}
 
-		static void Input()
+		void Input()
 		{
 			RotationAngle();
 			mousePoint = GetMousePosition();
 
 			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 			{
-				PlaySound(shootSound);
+				if (!pauseSoundShoot)
+				{
+					PlaySound(shootSound);
+				}
+				else
+				{
+					PauseSound(shootSound);
+				}
 				init = true;
 				for (int i = 0; i < shipMaxShoots; i++)
 				{

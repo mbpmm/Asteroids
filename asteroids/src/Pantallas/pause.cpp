@@ -15,7 +15,7 @@ namespace app
 		bool mute = false;
 		static char text1[] = "PAUSA";
 		static char text2[] = "MENU";
-		static char text3[] = "MUSICA";
+		static char text3[] = "SONIDO";
 		static char text4[] = "REINICIAR";
 		static char text5[] = "SEGUIR";
 		static char textAux[] = "SALIR";
