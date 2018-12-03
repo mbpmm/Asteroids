@@ -18,7 +18,7 @@ namespace app
 		static char text2[] = "SONIDO";
 		static char text3[] = "CREDITOS";
 		static char text4[] = "SALIR";
-		static char text5[] = "V 1.0";
+		static char text5[] = "V 1.1";
 		static int sizeText2 = 0;
 		static int sizeText3 = 0;
 		static int text1PositionX = 0;
@@ -45,6 +45,9 @@ namespace app
 		static const int scaleAux2 = 1600;
 		static const int scaleAux3 = 1280;
 
+		static int halfScreenWidth=0;
+		static int halfScreenHeight = 0;
+
 		static Image menuImage;
 		static Texture2D menuImageTexture;
 		static float scaleBackground;
@@ -53,17 +56,19 @@ namespace app
 		{
 			menuImage = LoadImage("res/menuBack.png");
 			menuImageTexture = LoadTextureFromImage(menuImage);
+			halfScreenWidth = GetScreenWidth() / 2;
+			halfScreenHeight = GetScreenHeight() / 2;
 
 			sizeText2 = (GetScreenWidth() * 20) / scaleAux1;
 			sizeText3 = (GetScreenWidth() * 15) / scaleAux1;
-			text1PositionX = GetScreenWidth() / 2 - MeasureText(text1, sizeText2) / 2;
-			text1PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.0333333;
-			text2PositionX = GetScreenWidth() / 2 - MeasureText(text2, sizeText2) / 2;
-			text2PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.1333333;
-			text3PositionX = GetScreenWidth() / 2 - MeasureText(text3, sizeText2) / 2;
-			text3PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.2333333;
-			text4PositionX = GetScreenWidth() / 2 - MeasureText(text4, sizeText2) / 2;
-			text4PositionY = GetScreenHeight() / 2 + GetScreenHeight() * 0.3333333;
+			text1PositionX = halfScreenWidth - MeasureText(text1, sizeText2) / 2;
+			text1PositionY = halfScreenHeight + GetScreenHeight() * 0.0333333;
+			text2PositionX = halfScreenWidth - MeasureText(text2, sizeText2) / 2;
+			text2PositionY = halfScreenHeight + GetScreenHeight() * 0.1333333;
+			text3PositionX = halfScreenWidth - MeasureText(text3, sizeText2) / 2;
+			text3PositionY = halfScreenHeight + GetScreenHeight() * 0.2333333;
+			text4PositionX = halfScreenWidth - MeasureText(text4, sizeText2) / 2;
+			text4PositionY = halfScreenHeight + GetScreenHeight() * 0.3333333;
 			text5PositionX = GetScreenWidth() * 0.05;
 			text5PositionY = GetScreenHeight() * 0.95;
 
@@ -74,23 +79,23 @@ namespace app
 
 			rect1.height = (GetScreenWidth() * 80) / scaleAux2;
 			rect1.width = (GetScreenWidth() * 255) / scaleAux2;
-			rect1.x= GetScreenWidth() / 2 - rect1.width / 2;
-			rect1.y= GetScreenHeight() / 2 + GetScreenHeight() * 0.11;
+			rect1.x= halfScreenWidth - rect1.width / 2;
+			rect1.y= halfScreenHeight + GetScreenHeight() * 0.11;
 
 			rect2.height = (GetScreenWidth() * 80) / scaleAux2;
 			rect2.width = (GetScreenWidth() * 255) / scaleAux2;
-			rect2.x = GetScreenWidth() / 2 - rect1.width / 2;
-			rect2.y = GetScreenHeight() / 2 + GetScreenHeight() * 0.21;
+			rect2.x = halfScreenWidth - rect1.width / 2;
+			rect2.y = halfScreenHeight + GetScreenHeight() * 0.21;
 
 			rect3.height = (GetScreenWidth() * 80) / scaleAux2;
 			rect3.width = (GetScreenWidth() * 255) / scaleAux2;
-			rect3.x = GetScreenWidth() / 2 - rect1.width / 2;
-			rect3.y = GetScreenHeight() / 2 + GetScreenHeight() * 0.31;
+			rect3.x = halfScreenWidth - rect1.width / 2;
+			rect3.y = halfScreenHeight + GetScreenHeight() * 0.31;
 
 			rect4.height = (GetScreenWidth() * 80) / scaleAux2;
 			rect4.width = (GetScreenWidth() * 255) / scaleAux2;
-			rect4.x = GetScreenWidth() / 2 - rect1.width / 2;
-			rect4.y = GetScreenHeight() / 2 + GetScreenHeight() * 0.01;
+			rect4.x = halfScreenWidth - rect1.width / 2;
+			rect4.y = halfScreenHeight + GetScreenHeight() * 0.01;
 
 			scaleBackground= (GetScreenWidth() * 1.0f) / scaleAux3;
 		}
