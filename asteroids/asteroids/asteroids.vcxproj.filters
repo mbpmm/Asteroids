@@ -30,15 +30,13 @@
     <ClCompile Include="..\src\Pantallas\pause.cpp">
       <Filter>Pantallas</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\main.cpp">
-      <Filter>Juego</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Objetos\meteors.cpp">
       <Filter>Objetos</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Objetos\spaceship.cpp">
       <Filter>Objetos</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Juego\app.h">

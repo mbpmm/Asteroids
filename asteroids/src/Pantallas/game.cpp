@@ -113,5 +113,13 @@ namespace app
 			InitValues();
 			gameOver = false;
 		}
+
+		void UnloadGameplay()
+		{
+			UnloadMeteors();
+			UnloadSpaceship();
+			UnloadTexture(backTexture);
+			UnloadImage(backImage);
+		}
 	}
 }

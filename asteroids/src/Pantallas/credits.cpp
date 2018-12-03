@@ -4,9 +4,11 @@
 
 #include "game.h"
 #include "app.h"
+#include "menu.h"
 
 using namespace app;
 using namespace game;
+using namespace menu;
 
 namespace app
 {
@@ -75,7 +77,7 @@ namespace app
 				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 				{
 					currentScreen = Menu;
-					ResetValues();
+					InitMenu();
 				}
 			}
 			else colorRect1.a = 255;

@@ -4,9 +4,11 @@
 
 #include "pause.h"
 #include "app.h"
+#include "game.h"
 
 using namespace app;
 using namespace pause;
+using namespace game;
 
 namespace app
 {
@@ -117,14 +119,23 @@ namespace app
 			{
 				colorRect2.a = 120;
 
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) currentScreen = Credits;
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+				{
+					UnloadMenu();
+					currentScreen = Credits;
+				}
 			}
 			else colorRect2.a = 255;
 			if (CheckCollisionPointRec(mousePoint, rect4))
 			{
 				colorRect4.a = 120;
 
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) currentScreen = Gameplay;
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+				{
+					UnloadMenu();
+					InitValues();
+					currentScreen = Gameplay;
+				}
 			}
 			else colorRect4.a = 255;
 		}
@@ -142,6 +153,12 @@ namespace app
 			DrawText(text3, text3PositionX, text3PositionY, sizeText2, BLACK);
 			DrawText(text4, text4PositionX, text4PositionY, sizeText2, BLACK);
 			DrawText(text5, text5PositionX, text5PositionY, sizeText2, WHITE);
+		}
+
+		void UnloadMenu()
+		{
+			UnloadTexture(menuImageTexture);
+			UnloadImage(menuImage);
 		}
 	}
 }

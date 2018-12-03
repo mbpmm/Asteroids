@@ -229,5 +229,14 @@ namespace app
 				}
 			}
 		}
+
+		void UnloadSpaceship()
+		{
+			UnloadSound(shootSound);
+			UnloadTexture(shipTexture);
+			UnloadTexture(shootTexture);
+			UnloadImage(shootImage);
+			UnloadImage(shipImage);
+		}
 	}
 }

@@ -19,6 +19,7 @@ namespace app
 		void InitMeteors();
 		void UpdateMeteors();
 		void DrawMeteors();
+		void UnloadMeteors();
 
 		extern bool pauseSoundExplosion;
 	}

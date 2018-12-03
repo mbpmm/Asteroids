@@ -357,5 +357,12 @@ namespace app
 				else DrawCircleV(smallMeteor[i].position, smallMeteor[i].radius, BLANK);
 			}
 		}
+
+		void UnloadMeteors()
+		{
+			UnloadSound(explosionSound);
+			UnloadTexture(meteorTexture);
+			UnloadImage(meteorImage);
+		}
 	}
 }

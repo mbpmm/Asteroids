@@ -10,6 +10,7 @@ namespace app
 		void InitSpaceship();
 		void UpdateSpaceship();
 		void DrawSpaceship();
+		void UnloadSpaceship();
 
 		struct Spaceship
 		{
