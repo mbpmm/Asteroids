@@ -80,9 +80,9 @@ namespace app
 			text8PositionX = halfScreen - MeasureText(text8, sizeText3) / 2;
 			text8PositionY = GetScreenHeight() * 0.53;
 			text9PositionX = halfScreen - MeasureText(text9, sizeText3) / 2;
-			text9PositionY = GetScreenHeight() * 0.58;
+			text9PositionY = GetScreenHeight() * 0.60;
 			text10PositionX = halfScreen - MeasureText(text10, sizeText3) / 2;
-			text10PositionY = GetScreenHeight() * 0.63;
+			text10PositionY = GetScreenHeight() * 0.67;
 
 			colorRect1 = PURPLE;
 
