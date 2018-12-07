@@ -1,5 +1,14 @@
 # Carpetas a ignorar
-asteroids/bin/
-asteroids/obj/
-asteroids/.vs/raylib/v15/ipch
-asteroids/.vs/raylib/v15/Browse.VC.db
+
+
+#bin folder
+**/bin
+
+#obj folder
+**/obj
+
+#vs folder
+**/.vs
+
+**.db
+**.opendb

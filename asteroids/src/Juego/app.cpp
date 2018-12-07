@@ -104,6 +104,7 @@ namespace app
 
 	static void CloseGame()
 	{
+		UnloadMusicStream(menuSong);
 		CloseAudioDevice();
 		CloseWindow();
 	}
